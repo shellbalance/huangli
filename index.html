@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日黄历 - 中国传统农历查询</title>
+    <meta name="description" content="查看今日黄历，了解农历日期、宜忌事项、节气信息">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="title">今日黄历</h1>
+            <p class="subtitle">传统智慧 · 现代生活</p>
+        </header>
+
+        <main class="main-content">
+            <!-- 日期卡片 -->
+            <section class="date-card">
+                <div class="solar-date">
+                    <div class="day-number" id="solarDay">16</div>
+                    <div class="date-info">
+                        <div class="month-year" id="solarMonthYear">2026年1月</div>
+                        <div class="weekday" id="weekday">星期五</div>
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="lunar-date">
+                    <div class="lunar-main" id="lunarDate">腊月十八</div>
+                    <div class="lunar-details">
+                        <div class="ganzhi" id="ganzhi">乙巳年 己丑月 癸亥日</div>
+                        <div class="zodiac" id="zodiac">🐍 蛇年</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 宜忌卡片 -->
+            <section class="fortune-section">
+                <div class="fortune-card suitable">
+                    <div class="fortune-header">
+                        <span class="fortune-icon">✓</span>
+                        <h2>宜</h2>
+                    </div>
+                    <div class="fortune-list" id="suitableList">
+                        <span class="fortune-item">祭祀</span>
+                        <span class="fortune-item">祈福</span>
+                        <span class="fortune-item">求嗣</span>
+                        <span class="fortune-item">开光</span>
+                        <span class="fortune-item">出行</span>
+                        <span class="fortune-item">解除</span>
+                        <span class="fortune-item">理发</span>
+                        <span class="fortune-item">会亲友</span>
+                    </div>
+                </div>
+
+                <div class="fortune-card unsuitable">
+                    <div class="fortune-header">
+                        <span class="fortune-icon">✕</span>
+                        <h2>忌</h2>
+                    </div>
+                    <div class="fortune-list" id="unsuitableList">
+                        <span class="fortune-item">嫁娶</span>
+                        <span class="fortune-item">入宅</span>
+                        <span class="fortune-item">移徙</span>
+                        <span class="fortune-item">安床</span>
+                        <span class="fortune-item">作灶</span>
+                        <span class="fortune-item">开市</span>
+                        <span class="fortune-item">破土</span>
+                        <span class="fortune-item">安葬</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 额外信息 -->
+            <section class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">五行</div>
+                    <div class="info-value" id="wuxing">大海水</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">冲煞</div>
+                    <div class="info-value" id="chongsha">冲蛇(己巳)煞西</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">胎神</div>
+                    <div class="info-value" id="taishen">占房床</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">吉神</div>
+                    <div class="info-value" id="jishen">天德 月德</div>
+                </div>
+            </section>
+
+            <!-- 每日一言 -->
+            <section class="quote-card">
+                <div class="quote-icon">📜</div>
+                <p class="quote-text" id="quote">顺天时，应人事，择吉而行，诸事顺遂。</p>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>仅供参考 · 理性对待</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

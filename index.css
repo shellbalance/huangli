@@ -1,0 +1,667 @@
+:root {
+    --primary-red: #c41e3a;
+    --primary-gold: #d4af37;
+    --dark-bg: #1a1a1a;
+    --card-bg: #2a2a2a;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --text-muted: #808080;
+    --suitable-color: #4caf50;
+    --unsuitable-color: #f44336;
+    --border-color: rgba(212, 175, 55, 0.3);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.background-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(196, 30, 58, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-gold) 0%, #ffd700 50%, var(--primary-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.3rem;
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.5rem;
+    font-weight: 300;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Date Card */
+.date-card {
+    background: linear-gradient(135deg, rgba(42, 42, 42, 0.9) 0%, rgba(30, 30, 30, 0.9) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    backdrop-filter: blur(10px);
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.date-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.2);
+}
+
+.solar-date {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.day-number {
+    font-size: 5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-red) 0%, #ff6b6b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.date-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.month-year {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.weekday {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.divider {
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--primary-gold), transparent);
+}
+
+.lunar-date {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.lunar-main {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-gold);
+}
+
+.lunar-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.ganzhi {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-family: 'Noto Serif SC', serif;
+}
+
+.zodiac {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+}
+
+/* Fortune Section */
+.fortune-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.fortune-card {
+    background: linear-gradient(135deg, rgba(42, 42, 42, 0.9) 0%, rgba(30, 30, 30, 0.9) 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fortune-card:hover {
+    transform: translateY(-5px);
+}
+
+.fortune-card.suitable {
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.fortune-card.suitable:hover {
+    box-shadow: 0 8px 24px rgba(76, 175, 80, 0.2);
+}
+
+.fortune-card.unsuitable {
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.fortune-card.unsuitable:hover {
+    box-shadow: 0 8px 24px rgba(244, 67, 54, 0.2);
+}
+
+.fortune-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.fortune-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 700;
+}
+
+.suitable .fortune-icon {
+    background: rgba(76, 175, 80, 0.2);
+    color: var(--suitable-color);
+}
+
+.unsuitable .fortune-icon {
+    background: rgba(244, 67, 54, 0.2);
+    color: var(--unsuitable-color);
+}
+
+.fortune-header h2 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.suitable h2 {
+    color: var(--suitable-color);
+}
+
+.unsuitable h2 {
+    color: var(--unsuitable-color);
+}
+
+.fortune-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.fortune-item {
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.suitable .fortune-item {
+    background: rgba(76, 175, 80, 0.15);
+    color: #81c784;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.suitable .fortune-item:hover {
+    background: rgba(76, 175, 80, 0.25);
+    transform: scale(1.05);
+}
+
+.unsuitable .fortune-item {
+    background: rgba(244, 67, 54, 0.15);
+    color: #e57373;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.unsuitable .fortune-item:hover {
+    background: rgba(244, 67, 54, 0.25);
+    transform: scale(1.05);
+}
+
+/* Info Grid */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.info-card {
+    background: linear-gradient(135deg, rgba(42, 42, 42, 0.8) 0%, rgba(30, 30, 30, 0.8) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-gold);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.15);
+}
+
+.info-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.1rem;
+}
+
+.info-value {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.1rem;
+    color: var(--primary-gold);
+    font-weight: 500;
+}
+
+/* Quote Card */
+.quote-card {
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    animation: fadeInUp 0.8s ease-out 0.8s both;
+    transition: all 0.3s ease;
+}
+
+.quote-card:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-md);
+}
+
+.quote-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.quote-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    animation: fadeIn 1s ease-out 1s both;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem 1rem;
+    }
+
+    .header {
+        margin-bottom: 2rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .subtitle {
+        font-size: 0.85rem;
+        letter-spacing: 0.3rem;
+    }
+
+    .date-card {
+        flex-direction: column;
+        padding: 1.75rem;
+        gap: 1.5rem;
+    }
+
+    .divider {
+        width: 80%;
+        height: 2px;
+        background: linear-gradient(to right, transparent, var(--primary-gold), transparent);
+    }
+
+    .solar-date {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .lunar-date {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .day-number {
+        font-size: 4rem;
+    }
+
+    .month-year {
+        font-size: 1.3rem;
+    }
+
+    .lunar-main {
+        font-size: 2rem;
+    }
+
+    .ganzhi {
+        font-size: 0.9rem;
+    }
+
+    .fortune-section {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .fortune-card {
+        padding: 1.5rem;
+    }
+
+    .fortune-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .fortune-item {
+        padding: 0.4rem 0.85rem;
+        font-size: 0.9rem;
+    }
+
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.85rem;
+    }
+
+    .info-card {
+        padding: 1.25rem;
+    }
+
+    .info-label {
+        font-size: 0.8rem;
+    }
+
+    .info-value {
+        font-size: 1rem;
+    }
+
+    .quote-card {
+        padding: 1.5rem;
+    }
+
+    .quote-icon {
+        font-size: 2rem;
+    }
+
+    .quote-text {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .footer {
+        margin-top: 2rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Extra small devices (phones in portrait, less than 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem 0.75rem;
+    }
+
+    .header {
+        margin-bottom: 1.5rem;
+    }
+
+    .title {
+        font-size: 2rem;
+        letter-spacing: 0.15rem;
+    }
+
+    .subtitle {
+        font-size: 0.75rem;
+        letter-spacing: 0.25rem;
+    }
+
+    .main-content {
+        gap: 1.5rem;
+    }
+
+    .date-card {
+        padding: 1.5rem;
+        gap: 1.25rem;
+        border-radius: 20px;
+    }
+
+    .day-number {
+        font-size: 3.5rem;
+    }
+
+    .month-year {
+        font-size: 1.15rem;
+    }
+
+    .weekday {
+        font-size: 0.9rem;
+    }
+
+    .lunar-main {
+        font-size: 1.75rem;
+    }
+
+    .ganzhi {
+        font-size: 0.85rem;
+    }
+
+    .zodiac {
+        font-size: 1.1rem;
+    }
+
+    .fortune-card {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    .fortune-header {
+        gap: 0.6rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .fortune-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1.3rem;
+    }
+
+    .fortune-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .fortune-list {
+        gap: 0.6rem;
+    }
+
+    .fortune-item {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.85rem;
+        border-radius: 10px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .info-card {
+        padding: 1rem;
+        border-radius: 14px;
+    }
+
+    .info-label {
+        font-size: 0.75rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .info-value {
+        font-size: 0.95rem;
+    }
+
+    .quote-card {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    .quote-icon {
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .quote-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .footer {
+        margin-top: 1.5rem;
+        padding: 1.5rem 0;
+        font-size: 0.8rem;
+    }
+
+    /* Disable hover effects on touch devices */
+    .date-card:hover,
+    .fortune-card:hover,
+    .info-card:hover,
+    .quote-card:hover {
+        transform: none;
+    }
+
+    .fortune-item:hover {
+        transform: none;
+    }
+}
