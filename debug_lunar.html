@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>农历调试工具</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .error {
+            background-color: #fee;
+            border-color: #fcc;
+        }
+
+        .success {
+            background-color: #efe;
+            border-color: #cfc;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>农历计算调试工具</h1>
+    <div id="results"></div>
+
+    <script src="script.js"></script>
+    <script>
+        // 测试用例：已知的公历和农历对照
+        const testCases = [
+            { date: '2026-01-22', expected: '腊月初四', lunarYear: 2025 },
+            { date: '2026-01-29', expected: '腊月十一', lunarYear: 2025 },
+            { date: '2026-02-17', expected: '正月初一', lunarYear: 2026 },
+            { date: '2025-12-31', expected: '腊月初二', lunarYear: 2025 },
+            { date: '2025-01-29', expected: '腊月二十', lunarYear: 2024 },
+            { date: '2025-06-25', expected: '五月三十', lunarYear: 2025 },
+            { date: '2025-07-24', expected: '闰五月廿九', lunarYear: 2025 },
+        ];
+
+        const lunar = new LunarCalendar();
+        const resultsDiv = document.getElementById('results');
+
+        let html = '<h2>测试结果</h2><table><tr><th>公历日期</th><th>预期农历</th><th>计算结果</th><th>状态</th><th>详细信息</th></tr>';
+
+        testCases.forEach(test => {
+            const date = new Date(test.date);
+            const result = lunar.toLunar(date);
+            const resultStr = lunar.getLunarDateStr(result);
+            const match = resultStr === test.expected;
+
+            html += `<tr class="${match ? 'success' : 'error'}">
+                <td>${test.date}</td>
+                <td>${test.expected}</td>
+                <td>${resultStr}</td>
+                <td>${match ? '✓ 正确' : '✗ 错误'}</td>
+                <td>年:${result.year} 月:${result.month} 日:${result.day} 闰:${result.isLeap}</td>
+            </tr>`;
+        });
+
+        html += '</table>';
+
+        // 详细调试当前日期
+        const now = new Date();
+        const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+        const beijingTime = new Date(utc + (3600000 * 8));
+
+        html += '<h2>当前日期详细调试</h2>';
+        html += `<p><strong>本地时间:</strong> ${now.toString()}</p>`;
+        html += `<p><strong>北京时间:</strong> ${beijingTime.toString()}</p>`;
+
+        const currentLunar = lunar.toLunar(beijingTime);
+        html += `<p><strong>农历计算结果:</strong></p>`;
+        html += `<ul>
+            <li>农历年份: ${currentLunar.year}</li>
+            <li>农历月份: ${currentLunar.month}</li>
+            <li>农历日期: ${currentLunar.day}</li>
+            <li>是否闰月: ${currentLunar.isLeap}</li>
+            <li>闰月月份: ${lunar.leapMonth(currentLunar.year)}</li>
+            <li>格式化结果: ${lunar.getLunarDateStr(currentLunar)}</li>
+        </ul>`;
+
+        // 调试2026年的闰月信息
+        html += '<h2>2025-2026年闰月信息</h2>';
+        html += '<table><tr><th>年份</th><th>闰月</th><th>闰月天数</th><th>全年天数</th></tr>';
+        for (let year = 2024; year <= 2026; year++) {
+            const leapMonth = lunar.leapMonth(year);
+            const leapDays = lunar.leapDays(year);
+            const yearDays = lunar.lYearDays(year);
+            html += `<tr><td>${year}</td><td>${leapMonth || '无'}</td><td>${leapDays}</td><td>${yearDays}</td></tr>`;
+        }
+        html += '</table>';
+
+        // 显示2025年每个月的天数
+        html += '<h2>2025年各月天数</h2>';
+        html += '<table><tr><th>月份</th><th>天数</th></tr>';
+        for (let month = 1; month <= 12; month++) {
+            const days = lunar.monthDays(2025, month);
+            html += `<tr><td>${month}月</td><td>${days}天</td></tr>`;
+        }
+        html += '</table>';
+
+        resultsDiv.innerHTML = html;
+    </script>
+</body>
+
+</html>

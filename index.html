@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日黄历 - 中国传统农历查询</title>
+    <meta name="description" content="查看今日黄历，了解农历日期、宜忌事项、节气信息">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="background-pattern"></div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="title">今日黄历</h1>
+            <p class="subtitle">传统智慧 · 现代生活</p>
+            <div class="date-picker-container">
+                <input type="date" id="datePicker" class="date-picker">
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- 日期卡片 -->
+            <section class="date-card">
+                <div class="solar-date">
+                    <div class="day-number" id="solarDay">16</div>
+                    <div class="date-info">
+                        <div class="month-year" id="solarMonthYear">2026年1月</div>
+                        <div class="weekday" id="weekday">星期五</div>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="lunar-date">
+                    <div class="lunar-main" id="lunarDate">腊月十八</div>
+                    <div class="lunar-details">
+                        <div class="ganzhi" id="ganzhi">乙巳年 己丑月 癸亥日</div>
+                        <div class="zodiac" id="zodiac">🐍 蛇年</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 宜忌卡片 -->
+            <section class="fortune-section">
+                <div class="fortune-card suitable">
+                    <div class="fortune-header">
+                        <span class="fortune-icon">✓</span>
+                        <h2>宜</h2>
+                    </div>
+                    <div class="fortune-list" id="suitableList">
+                        <span class="fortune-item">祭祀</span>
+                        <span class="fortune-item">祈福</span>
+                        <span class="fortune-item">求嗣</span>
+                        <span class="fortune-item">开光</span>
+                        <span class="fortune-item">出行</span>
+                        <span class="fortune-item">解除</span>
+                        <span class="fortune-item">理发</span>
+                        <span class="fortune-item">会亲友</span>
+                    </div>
+                </div>
+
+                <div class="fortune-card unsuitable">
+                    <div class="fortune-header">
+                        <span class="fortune-icon">✕</span>
+                        <h2>忌</h2>
+                    </div>
+                    <div class="fortune-list" id="unsuitableList">
+                        <span class="fortune-item">嫁娶</span>
+                        <span class="fortune-item">入宅</span>
+                        <span class="fortune-item">移徙</span>
+                        <span class="fortune-item">安床</span>
+                        <span class="fortune-item">作灶</span>
+                        <span class="fortune-item">开市</span>
+                        <span class="fortune-item">破土</span>
+                        <span class="fortune-item">安葬</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 额外信息 -->
+            <section class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">五行</div>
+                    <div class="info-value" id="wuxing">大海水</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">冲煞</div>
+                    <div class="info-value" id="chongsha">冲蛇(己巳)煞西</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">胎神</div>
+                    <div class="info-value" id="taishen">占房床</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">吉神</div>
+                    <div class="info-value" id="jishen">天德 月德</div>
+                </div>
+            </section>
+
+            <!-- 时辰吉凶 -->
+            <section class="hours-luck-section">
+                <h3 class="section-title">时辰吉凶</h3>
+                <div class="hours-grid" id="hoursLuck">
+                    <!-- 通过JS动态生成 -->
+                </div>
+            </section>
+
+            <!-- 八字排盘 -->
+            <section class="bazi-section">
+                <h3 class="section-title">生辰八字推算</h3>
+                <div class="bazi-container">
+                    <div class="bazi-input-group">
+                        <label>出生日期 (公历)</label>
+                        <input type="date" id="baziDate" class="glass-input">
+                    </div>
+                    <div class="bazi-input-group">
+                        <label>出生时辰</label>
+                        <select id="baziHour" class="glass-input">
+                            <option value="0">子时 (23:00-01:00)</option>
+                            <option value="1">丑时 (01:00-03:00)</option>
+                            <option value="2">寅时 (03:00-05:00)</option>
+                            <option value="3">卯时 (05:00-07:00)</option>
+                            <option value="4">辰时 (07:00-09:00)</option>
+                            <option value="5">巳时 (09:00-11:00)</option>
+                            <option value="6">午时 (11:00-13:00)</option>
+                            <option value="7">未时 (13:00-15:00)</option>
+                            <option value="8">申时 (15:00-17:00)</option>
+                            <option value="9">酉时 (17:00-19:00)</option>
+                            <option value="10">戌时 (19:00-21:00)</option>
+                            <option value="11">亥时 (21:00-23:00)</option>
+                        </select>
+                    </div>
+                    <button id="calcBaziBtn" class="action-btn">开始排盘</button>
+
+                    <div class="bazi-result" id="baziResult" style="display: none;">
+                        <div class="pillar-grid">
+                            <div class="pillar-card">
+                                <div class="pillar-title">年柱</div>
+                                <div class="pillar-ganzhi" id="yearPillar">甲辰</div>
+                                <div class="pillar-wuxing" id="yearWuxing">木土</div>
+                            </div>
+                            <div class="pillar-card">
+                                <div class="pillar-title">月柱</div>
+                                <div class="pillar-ganzhi" id="monthPillar">丙寅</div>
+                                <div class="pillar-wuxing" id="monthWuxing">火木</div>
+                            </div>
+                            <div class="pillar-card">
+                                <div class="pillar-title">日柱</div>
+                                <div class="pillar-ganzhi" id="dayPillar">戊午</div>
+                                <div class="pillar-wuxing" id="dayWuxing">土火</div>
+                            </div>
+                            <div class="pillar-card">
+                                <div class="pillar-title">时柱</div>
+                                <div class="pillar-ganzhi" id="hourPillar">壬子</div>
+                                <div class="pillar-wuxing" id="hourWuxing">水水</div>
+                            </div>
+                        </div>
+                        <div class="bazi-analysis" id="baziAnalysis">
+                            <!-- 五行分析 -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 每日一言 -->
+            <section class="quote-card">
+                <div class="quote-icon">📜</div>
+                <p class="quote-text" id="quote">顺天时，应人事，择吉而行，诸事顺遂。</p>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>仅供参考 · 理性对待</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

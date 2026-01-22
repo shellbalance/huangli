@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>leapMonth 含义测试</title>
+</head>
+
+<body>
+    <h1>leapMonth 含义测试</h1>
+    <div id="output"></div>
+
+    <script src="script.js"></script>
+    <script>
+        const lunar = new LunarCalendar();
+        let html = '';
+
+        // 测试2025年（已知有闰五月）
+        const year = 2025;
+        const leapMonth = lunar.leapMonth(year);
+
+        html += `<h2>2025年闰月信息</h2>`;
+        html += `<p><strong>leapMonth(2025) = ${leapMonth}</strong></p>`;
+        html += `<p>根据万年历，2025年有闰五月</p>`;
+        html += `<p>月份顺序应该是：正月、二月、三月、四月、五月、闰五月、六月、七月、八月、九月、十月、冬月、腊月</p>`;
+
+        html += '<h3>手动模拟月份遍历</h3>';
+        html += '<table border="1"><tr><th>迭代i</th><th>判断条件</th><th>当前处理月份</th><th>天数</th></tr>';
+
+        let isLeapMonth = false;
+        for (let i = 1; i <= 13; i++) {
+            let daysInMonth = 0;
+            let monthName = '';
+            let condition = '';
+
+            if (leapMonth > 0 && i == (leapMonth + 1) && !isLeapMonth) {
+                condition = `i(${i}) == leapMonth+1(${leapMonth + 1}) && !isLeapMonth`;
+                i--;
+                monthName = `闰${i}月`;
+                isLeapMonth = true;
+                daysInMonth = lunar.leapDays(year);
+            } else {
+                condition = `普通月份`;
+                monthName = `${i}月`;
+                daysInMonth = lunar.monthDays(year, i);
+                if (isLeapMonth) {
+                    isLeapMonth = false;
+                }
+            }
+
+            html += `<tr><td>${i}</td><td>${condition}</td><td>${monthName}</td><td>${daysInMonth}天</td></tr>`;
+        }
+
+        html += '</table>';
+
+        html += '<h3>结论</h3>';
+        html += `<p>如果 leapMonth = ${leapMonth}，那么：</p>`;
+        html += `<ul>`;
+        html += `<li>当 i = ${leapMonth + 1} 时，应该处理闰${leapMonth}月</li>`;
+        html += `<li>这意味着 leapMonth 的值表示：闰月的月份编号</li>`;
+        html += `<li>例如 leapMonth=5 表示闰五月（在五月之后）</li>`;
+        html += `</ul>`;
+
+        document.getElementById('output').innerHTML = html;
+    </script>
+</body>
+
+</html>

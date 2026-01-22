@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>测试农历计算</title>
+</head>
+<body>
+    <h1>农历计算测试</h1>
+    <div id="output"></div>
+    
+    <script src="script.js"></script>
+    <script>
+        const lunar = new LunarCalendar();
+        const output = document.getElementById('output');
+        
+        // 测试2026年1月21日
+        const testDate = new Date(2026, 0, 21); // 月份从0开始
+        const lunarDate = lunar.toLunar(testDate);
+        
+        output.innerHTML = `
+            <h2>2026年1月21日</h2>
+            <p>农历年: ${lunarDate.year}</p>
+            <p>农历月: ${lunarDate.month}</p>
+            <p>农历日: ${lunarDate.day}</p>
+            <p>是否闰月: ${lunarDate.isLeap}</p>
+            <p>月份数组索引 [${lunarDate.month - 1}]: ${lunar.nStr1[lunarDate.month - 1]}</p>
+            <p>完整显示: ${lunar.getLunarDateStr(lunarDate)}</p>
+            <hr>
+            <h3>闰月信息</h3>
+            <p>2025年闰月: ${lunar.leapMonth(2025)}</p>
+            <p>2026年闰月: ${lunar.leapMonth(2026)}</p>
+        `;
+    </script>
+</body>
+</html>

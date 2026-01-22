@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>闰月数据分析</title>
+</head>
+
+<body>
+    <h1>闰月数据分析</h1>
+    <div id="output"></div>
+
+    <script src="script.js"></script>
+    <script>
+        const lunar = new LunarCalendar();
+        let html = '<h2>2025年闰月详细信息</h2>';
+
+        // 2025年有闰五月
+        const year = 2025;
+        const leapMonth = lunar.leapMonth(year);
+        const leapDays = lunar.leapDays(year);
+
+        html += `<p><strong>leapMonth(2025) = ${leapMonth}</strong></p>`;
+        html += `<p><strong>leapDays(2025) = ${leapDays}</strong></p>`;
+        html += `<p>根据万年历，2025年应该是闰五月（即五月之后有一个闰五月）</p>`;
+        html += `<p>所以 leapMonth = ${leapMonth} 的含义是：第${leapMonth}个月之后有闰月</p>`;
+
+        html += '<h3>2025年各月天数</h3><table border="1"><tr><th>月份</th><th>天数</th></tr>';
+        for (let m = 1; m <= 12; m++) {
+            const days = lunar.monthDays(year, m);
+            html += `<tr><td>${m}月</td><td>${days}天</td></tr>`;
+        }
+        html += '</table>';
+
+        html += '<h3>测试几个关键日期</h3>';
+        html += '<table border="1"><tr><th>公历</th><th>计算结果</th><th>预期结果</th></tr>';
+
+        const tests = [
+            { date: '2025-06-24', expected: '五月廿九' },
+            { date: '2025-06-25', expected: '五月三十' },
+            { date: '2025-06-26', expected: '闰五月初一' },
+            { date: '2025-07-24', expected: '闰五月廿九' },
+            { date: '2025-07-25', expected: '六月初一' },
+        ];
+
+        tests.forEach(test => {
+            const d = new Date(test.date);
+            const result = lunar.toLunar(d);
+            const resultStr = lunar.getLunarDateStr(result);
+            html += `<tr><td>${test.date}</td><td>${resultStr} (月:${result.month}, 闰:${result.isLeap})</td><td>${test.expected}</td></tr>`;
+        });
+
+        html += '</table>';
+
+        document.getElementById('output').innerHTML = html;
+    </script>
+</body>
+
+</html>
